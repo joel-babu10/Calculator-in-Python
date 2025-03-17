@@ -1,0 +1,55 @@
+class Gradebook:
+    def __init__(self):
+        self.grades = {}  # Dictionary to store student names and grades
+
+    def add_student(self, name, grade):
+        """Add a new student with their grade."""
+        if name in self.grades:
+            print(f"{name} is already in the gradebook.")
+        else:
+            self.grades[name] = grade
+            print(f"{name} added with grade {grade}.")
+
+    def remove_student(self, name):
+        """Remove a student from the gradebook."""
+        if name in self.grades:
+            del self.grades[name]
+            print(f"{name} has been removed.")
+        else:
+            print(f"{name} not found in the gradebook.")
+
+    def update_grade(self, name, new_grade):
+        """Update a student's grade."""
+        if name in self.grades:
+            self.grades[name] = new_grade
+            print(f"{name}'s grade updated to {new_grade}.")
+        else:
+            print(f"{name} not found in the gradebook.")
+
+    def calculate_average(self):
+        """Calculate and return the average grade of the class."""
+        if not self.grades:
+            return 0
+        return sum(self.grades.values()) / len(self.grades)
+
+    def display_grades(self):
+        """Display all students and their grades."""
+        if not self.grades:
+            print("No students in the gradebook.")
+        else:
+            for name, grade in self.grades.items():
+                print(f"{name}: {grade}")
+
+# Example usage:
+gradebook = Gradebook()
+
+gradebook.add_student("Alice", 85)
+gradebook.add_student("Bob", 90)
+gradebook.add_student("Charlie", 78)
+
+gradebook.display_grades()
+
+gradebook.update_grade("Alice", 88)
+gradebook.remove_student("Charlie")
+
+print("Class Average:", gradebook.calculate_average())
